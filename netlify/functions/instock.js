@@ -1,5 +1,5 @@
 const axios = require('axios'); 
-const mailgun = require('mailgun-js');
+// const mailgun = require('mailgun-js');
 
 async function lookup(){
   const { BB_ENDPOINT, PS5 } = process.env;
@@ -10,17 +10,17 @@ async function lookup(){
 async function sendMail(message){
   const { MAIL_DOMAIN, MAIL_API_KEY, MAIL_TO, MAIL_FROM} = process.env;
   console.log({ MAIL_DOMAIN, MAIL_API_KEY, MAIL_TO, MAIL_FROM})
-  const mail = mailgun({apiKey: MAIL_API_KEY, domain: MAIL_DOMAIN});
+  const mailgun = require('mailgun-js')({apiKey: API_KEY, domain: DOMAIN});
   const data = {
     from: MAIL_FROM,
     to: MAIL_TO,
-    subject: 'V.0.5',
+    subject: 'V.0.6',
     text: message
   };
   console.log('about to mail...')
-  await mail.messages().send(data, (error, body) => {
-    console.log('sending...')
-    if (error) console.log('Error:', error.message)
+  mailgun.messages().send(data, (error, body) => {
+    console.log('sending...', body)
+    if (error) console.log('Error:', error)
   });
   console.log('...mail should have sent')
 }
