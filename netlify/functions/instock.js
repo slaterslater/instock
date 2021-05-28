@@ -10,7 +10,7 @@ async function lookup(){
 async function sendMail(message){
   const { MAIL_DOMAIN, MAIL_API_KEY, MAIL_TO, MAIL_FROM} = process.env;
   console.log({ MAIL_DOMAIN, MAIL_API_KEY, MAIL_TO, MAIL_FROM})
-  const mailgun = require('mailgun-js')({apiKey: API_KEY, domain: DOMAIN});
+  const mailgun = require('mailgun-js')({apiKey: MAIL_API_KEY, domain: MAIL_DOMAIN});
   const data = {
     from: MAIL_FROM,
     to: MAIL_TO,
