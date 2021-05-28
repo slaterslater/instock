@@ -13,12 +13,12 @@ async function sendMail(message){
   const data = {
     from: MAIL_FROM,
     to: MAIL_TO,
-    subject: 'V.0.1',
+    subject: 'V.0.2',
     text: message
   };
-  mail.messages().send(data, (error, body) => {
+  await mail.messages().send(data, (error, body) => {
     if (error) return console.log('Error:', error.message)
-    // console.log('Success!', body.message);
+    console.log('Success!', body.message);
   });
 }
 
@@ -26,9 +26,9 @@ exports.handler = async (event, context) => {
   
   const data = await lookup()
   // const purchasable = data.availabilities[0].shipping.purchasable
-
+  
   await sendMail('testing netflify')
-
+  console.log('mail sent and returning status 200')
   return {
     statusCode: 200,
     body: JSON.stringify(data)
