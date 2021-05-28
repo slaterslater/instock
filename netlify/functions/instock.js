@@ -13,7 +13,7 @@ async function sendMail(message){
   const data = {
     from: MAIL_FROM,
     to: MAIL_TO,
-    subject: 'V.0.2',
+    subject: 'V.0.3',
     text: message
   };
   await mail.messages().send(data, (error, body) => {
